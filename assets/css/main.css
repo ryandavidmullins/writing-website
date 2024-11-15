@@ -1,0 +1,116 @@
+:root {
+    /* Core colors */
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --sidenote-bg: #f8f8f8;
+    --link-color: #2c5282;
+    --border-color: #e2e8f0;
+    --highlight-color: #fff3cd;
+    --hover-color: #edf2f7;
+    
+    /* Typography */
+    --body-font: "Palatino", "Georgia", serif;
+    --side-font: "SF Mono", "Menlo", monospace;
+    --decorative-font: "Georgia", serif;
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--bg-color);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+}
+
+h1, h2 {
+    font-family: var(--decorative-font);
+    line-height: 1.2;
+}
+
+.article-content > p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--decorative-font);
+    font-size: 4em;
+    padding: 0.1em 0.1em 0 0;
+    line-height: 0.8;
+    color: var(--link-color);
+}
+
+.sidenote-word {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--link-color);
+    cursor: pointer;
+    position: relative;
+}
+
+.preview-box {
+    position: absolute;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1rem;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.sidenote-word:hover .preview-box {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidenotes {
+    background: var(--sidenote-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+.sidenote {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background: var(--bg-color);
+    opacity: 0.8;
+    transition: all 0.3s;
+    border: 1px solid var(--border-color);
+}
+
+.sidenote:hover {
+    opacity: 1;
+    transform: translateX(-4px);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidenotes {
+        position: relative;
+        top: 0;
+        margin-top: 2rem;
+    }
+
+    .preview-box {
+        display: none;
+    }
+}
